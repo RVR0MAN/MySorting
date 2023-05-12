@@ -7,11 +7,11 @@ public class Sorting {
         int[] arr = {5, 33, 142, 4, 3, 3, 40, 1, 5, 18, 7, 25};
         int[] arr2 = {6, 123, 35, 5, 1};
 
-        /*исходные данные для демонстрации слияния с рекурсией, это нужно поместить в метод bubbleSort и передать в него
-        один большой массив arr, он будет разбит на несколько и рекурсивным вызовом метода 2 части будут отсортированы
-       int[] arr1 = Arrays.copyOfRange(arr,0, arr.length/2);
-        int[] arr4 = Arrays.copyOfRange(arr, arr.length/2, arr.length);
-         */
+//        исходные данные для демонстрации слияния с рекурсией, это нужно поместить в метод bubbleSort и передать в него
+//        один большой массив arr, он будет разбит на несколько и рекурсивным вызовом метода 2 части будут отсортированы
+//       int[] arr1 = Arrays.copyOfRange(arr,0, arr.length/2);
+//        int[] arr4 = Arrays.copyOfRange(arr, arr.length/2, arr.length);
+
 
         //исходные данные для демонстрации сортировки путём слияния понадобится результирующий массив
         int[] arrRes = new int[arr.length + arr2.length];
@@ -24,36 +24,27 @@ public class Sorting {
         int high = arr.length - 1;
 
         //исходные данные для сортировки подсчетом
-        int [] counter;
+        int[] counter;
 
 //ВЫЗОВ ФУНКЦИЙ:
 
 
-
-/*
-        //упорядочиваю "пузырьком" два массива (так же требуется для слияния)
-        bubbleSort(arr);
-        bubbleSort(arr2);
-
-
-
-        //тут выполняю сортировку слиянием
-        mergerSort(arr, arr2, arrRes);
-
- */
+//       //упорядочиваю "пузырьком" два массива (так же требуется для слияния)
+//       bubbleSort(arr);
+//       bubbleSort(arr2);
+//
+//
+//
+//       //тут выполняю сортировку слиянием
+//       mergerSort(arr, arr2, arrRes);
 
 
-/*
-        //для быстрой сортировки с пивотированием
-        quickSort(arr, low, high);
-          */
+//       //для быстрой сортировки с пивотированием
+//       quickSort(arr, low, high);
 
-/*
-        //сортировка подсчетом(линейная)
-       counter = countingSort(arr);
 
- */
-
+//        //сортировка подсчетом(линейная)
+//       counter = countingSort(arr);
 
 
         //это просто метод вывода в консоль любого массива для наглядности
@@ -63,25 +54,22 @@ public class Sorting {
     }
 
 
-    public static void output(int[]arr){
+    public static void output(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-/*
-            //вывод для сортировки подсчетом
-            if(arr[i]!=0) {
-                int x = arr[i];
-                while(x!=0) {
-                    System.out.print(i + " ");
-                   x--;
-                }
-            }
 
- */
+//           //вывод для сортировки подсчетом
+//           if(arr[i]!=0) {
+//               int x = arr[i];
+//               while(x!=0) {
+//                   System.out.print(i + " ");
+//                  x--;
+//               }
+//           }
+
 
             System.out.print(arr[i] + " ");
         }
     }
-
-
 
 
     public static void bubbleSort(int[] arr) {
@@ -101,12 +89,8 @@ public class Sorting {
             }
             iArr++;
         }
-        iArr=0;
+        iArr = 0;
     }
-
-
-
-
 
 
     public static int[] mergerSort(int[] arr, int[] arr2, int[] arrRes) {
@@ -119,27 +103,22 @@ public class Sorting {
             //первые два if на случай, если один из массивов закончился
             if (iArr == arr.length) {
                 arrRes[iArrRes] = arr2[iArr2];
-               iArr2++;
-            }else if (iArr2 == arr2.length){
-                    arrRes[iArrRes] = arr[iArr];
-                    iArr++;
-                    //эти условия, для определения наименьшего значения из 2х массивов, когда их сравниваем поочередно
-                } else if (arr[iArr] < arr2[iArr2] || arr[iArr] == arr2[iArr2]) {
-                    arrRes[iArrRes] = arr[iArr];
-                    iArr++;
-                } else {
-                    arrRes[iArrRes] = arr2[iArr2];
-                    iArr2++;
-                }
-                iArrRes++;
+                iArr2++;
+            } else if (iArr2 == arr2.length) {
+                arrRes[iArrRes] = arr[iArr];
+                iArr++;
+                //эти условия, для определения наименьшего значения из 2х массивов, когда их сравниваем поочередно
+            } else if (arr[iArr] < arr2[iArr2] || arr[iArr] == arr2[iArr2]) {
+                arrRes[iArrRes] = arr[iArr];
+                iArr++;
+            } else {
+                arrRes[iArrRes] = arr2[iArr2];
+                iArr2++;
             }
-            return arrRes;
+            iArrRes++;
         }
-
-
-
-
-
+        return arrRes;
+    }
 
 
     public static void quickSort(int[] array, int low, int high) {
@@ -182,41 +161,34 @@ public class Sorting {
     }
 
 
-
-
-
-
-
-    public static int[] countingSort(int[]arr){
+    public static int[] countingSort(int[] arr) {
 
         int counterSize = maxCounterValue(arr);
 
-        int[] counter = new int [counterSize];
+        int[] counter = new int[counterSize];
 
-        for(int i=0; i< arr.length; i++){
-            counter[arr[i]] = counter[arr[i]]+1;
+        for (int i = 0; i < arr.length; i++) {
+            counter[arr[i]] = counter[arr[i]] + 1;
         }
         return counter;
     }
-    public static int maxCounterValue(int[]arr){
-        int counterSize=0;
 
-        for(int i=0; i<arr.length; i++){
+    public static int maxCounterValue(int[] arr) {
+        int counterSize = 0;
 
-            if(arr[i+1]==arr[arr.length-1]&&counterSize<arr[i+1]){
-                counterSize=arr[i+1];
-                return counterSize+1;
-            }else if (arr[i+1]==arr[arr.length-1]&&counterSize>=arr[i+1]){
-                return counterSize+1;
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i + 1] == arr[arr.length - 1] && counterSize < arr[i + 1]) {
+                counterSize = arr[i + 1];
+                return counterSize + 1;
+            } else if (arr[i + 1] == arr[arr.length - 1] && counterSize >= arr[i + 1]) {
+                return counterSize + 1;
             }
 
-            if (counterSize<arr[i]){
-                counterSize=arr[i];
+            if (counterSize < arr[i]) {
+                counterSize = arr[i];
             }
         }
-        return counterSize+1;
+        return counterSize + 1;
     }
-    }
-
-
-
+}
